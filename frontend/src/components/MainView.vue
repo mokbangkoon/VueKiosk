@@ -2,10 +2,8 @@
   <div>
     <nav-bar></nav-bar>
 
-    <div></div>
-
     <div class="d-flex justify-content-between p-5" style="gap: 50px">
-      <b-button class="receipt-button">
+      <b-button class="receipt-button" @click="gotoReciept">
         <img src="../assets/receipt.png" class="receipt-img" />
       </b-button>
       <b-button class="sunab-button">
@@ -19,8 +17,10 @@
 <script>
 import FooterNotice from './FooterNotice.vue';
 import NavBar from './NavBar.vue';
+
 export default {
   components: { NavBar, FooterNotice },
+
   data() {
     return {
       slide: 0,
@@ -33,6 +33,9 @@ export default {
     },
     onSlideEnd() {
       this.sliding = false;
+    },
+    gotoReciept() {
+      this.$router.push('/receipt');
     },
   },
 };

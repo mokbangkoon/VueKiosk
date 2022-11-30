@@ -1,181 +1,105 @@
 <template>
   <div>
-    <input type="text" value="" class="keyboardInput" readonly />
-    <input type="txt" id="eng_text" readonly />
+    <div class="ko">
+      <b-button @click="insertData('ㄱ')">ㄱ</b-button>
+      <b-button @click="insertData('ㄴ')">ㄴ</b-button>
+      <b-button @click="insertData('ㄷ')">ㄷ</b-button>
+      <b-button @click="insertData('ㄹ')">ㄹ</b-button>
+      <b-button @click="insertData('ㅁ')">ㅁ</b-button>
+      <b-button @click="insertData('ㅂ')">ㅂ</b-button>
+      <b-button @click="insertData('ㅅ')">ㅅ</b-button>
+      <b-button @click="insertData('ㅇ')">ㅇ</b-button>
+      <b-button @click="insertData('ㅈ')">ㅈ</b-button>
+      <b-button @click="insertData('ㅊ')">ㅊ</b-button>
+      <b-button @click="insertData('ㅋ')">ㅋ</b-button>
+      <b-button @click="insertData('ㅌ')">ㅌ</b-button>
+      <b-button @click="insertData('ㅍ')">ㅍ</b-button>
+      <b-button @click="insertData('ㅎ')">ㅎ</b-button>
+      <b-button @click="insertData('ㅏ')">ㅏ</b-button>
+      <b-button @click="insertData('ㅑ')">ㅑ</b-button>
+      <b-button @click="insertData('ㅓ')">ㅓ</b-button>
+      <b-button @click="insertData('ㅕ')">ㅕ</b-button>
+      <b-button @click="insertData('ㅗ')">ㅗ</b-button>
+      <b-button @click="insertData('ㅛ')">ㅛ</b-button>
+      <b-button @click="insertData('ㅜ')">ㅜ</b-button>
+      <b-button @click="insertData('ㅠ')">ㅠ</b-button>
+      <b-button @click="insertData('ㅡ')">ㅡ</b-button>
+      <b-button @click="insertData('ㅣ')">ㅣ</b-button>
+      <b-button @click="insertData('ㅔ')">ㅔ</b-button>
+      <b-button @click="insertData('ㅖ')">ㅖ</b-button>
+      <b-button @click="insertData('ㅐ')">ㅐ</b-button>
+      <b-button @click="insertData('ㅒ')">ㅒ</b-button>
+    </div>
+    <div class="special">
+      <b-button @click="insertData('shift')">shift</b-button>
+      <b-button @click="deleteData()">delete</b-button>
+      <b-button @click="insertData('한/영')">한/영</b-button>
+    </div>
+    <div class="ssang">
+      <b-button @click="insertData('ㅃ')">ㅃ</b-button>
+      <b-button @click="insertData('ㅉ')">ㅉ</b-button>
+      <b-button @click="insertData('ㄸ')">ㄸ</b-button>
+      <b-button @click="insertData('ㄲ')">ㄲ</b-button>
+      <b-button @click="insertData('ㅆ')">ㅆ</b-button>
+    </div>
+    <div class="eng">
+      <b-button @click="insertData('a')">a</b-button>
+      <b-button @click="insertData('b')">b</b-button>
+      <b-button @click="insertData('c')">c</b-button>
+      <b-button @click="insertData('d')">d</b-button>
+      <b-button @click="insertData('e')">e</b-button>
+      <b-button @click="insertData('f')">f</b-button>
+      <b-button @click="insertData('g')">g</b-button>
+      <b-button @click="insertData('h')">h</b-button>
+      <b-button @click="insertData('i')">i</b-button>
+      <b-button @click="insertData('j')">j</b-button>
+      <b-button @click="insertData('k')">k</b-button>
+      <b-button @click="insertData('l')">l</b-button>
+      <b-button @click="insertData('m')">m</b-button>
+      <b-button @click="insertData('n')">n</b-button>
+      <b-button @click="insertData('o')">o</b-button>
+      <b-button @click="insertData('p')">p</b-button>
+      <b-button @click="insertData('q')">q</b-button>
+      <b-button @click="insertData('r')">r</b-button>
+      <b-button @click="insertData('s')">s</b-button>
+      <b-button @click="insertData('t')">t</b-button>
+      <b-button @click="insertData('u')">u</b-button>
+      <b-button @click="insertData('v')">v</b-button>
+      <b-button @click="insertData('w')">w</b-button>
+      <b-button @click="insertData('x')">x</b-button>
+      <b-button @click="insertData('y')">y</b-button>
+      <b-button @click="insertData('z')">z</b-button>
+    </div>
+    <div>
+      <input v-model="hanguldata" type="text" class="input-data" />
+    </div>
   </div>
 </template>
 
 <script>
+import * as hangul from 'hangul-js';
 export default {
   data() {
     return {
-      data: 'ho',
+      clickData: [],
+      hanguldata: null,
     };
+  },
+  methods: {
+    insertData(str) {
+      this.clickData.push(str);
+      this.hanguldata = hangul.assemble(this.clickData);
+    },
+    deleteData() {
+      this.clickData.pop();
+      this.hanguldata = hangul.assemble(this.clickData);
+    },
   },
 };
 </script>
-<script type="text/javascript" src="../keyboard.js"></script>
 
 <style>
-#keyboardInputMaster {
-  position: absolute;
-  border: 2px groove #dddddd;
-  color: #000000;
-  background-color: #dddddd;
-  text-align: left;
-  z-index: 1000000;
-  width: auto;
-}
-#keyboardInputMaster thead tr th {
-  text-align: left;
-  padding: 2px 5px 2px 4px;
-  background-color: inherit;
-  border: 0px none;
-}
-#keyboardInputMaster thead tr th select,
-#keyboardInputMaster thead tr th label {
-  color: white;
-  font: normal 11px Arial, sans-serif;
-}
-#keyboardInputMaster thead tr td {
-  text-align: right;
-  padding: 2px 4px 2px 5px;
-  background-color: inherit;
-  border: 0px none;
-}
-#keyboardInputMaster thead tr td span {
-  padding: 1px 4px;
-  font: bold 11px Arial, sans-serif;
-  border: 1px outset #aaaaaa;
-  background-color: #cccccc;
-  cursor: pointer;
-}
-#keyboardInputMaster thead tr td span.pressed {
-  border: 1px inset #999999;
-  background-color: #bbbbbb;
-}
-#keyboardInputMaster tbody tr td {
-  text-align: left;
-  margin: 0px;
-  padding: 0px 4px 3px 4px;
-}
-#keyboardInputMaster tbody tr td div {
-  text-align: center;
-  position: relative;
-  height: 0px;
-}
-#keyboardInputMaster tbody tr td div#keyboardInputLayout {
-  height: auto;
-}
-#keyboardInputMaster tbody tr td div#keyboardInputLayout table {
-  height: 20px;
-  white-space: nowrap;
+.input-data {
   width: 100%;
-  border-collapse: separate;
-}
-#keyboardInputMaster
-  tbody
-  tr
-  td
-  div#keyboardInputLayout
-  table.keyboardInputCenter {
-  width: auto;
-  margin: 0px auto;
-}
-#keyboardInputMaster tbody tr td div#keyboardInputLayout table tbody tr td {
-  vertical-align: middle;
-  padding: 5px 10px 5px 10px;
-  white-space: pre;
-  font: normal 11px 'Lucida Console', monospace;
-  border-top: 1px solid #e5e5e5;
-  border-right: 1px solid #5d5d5d;
-  border-bottom: 1px solid #5d5d5d;
-  border-left: 1px solid #e5e5e5;
-  background-color: #ffffff;
-  cursor: default;
-}
-#keyboardInputMaster
-  tbody
-  tr
-  td
-  div#keyboardInputLayout
-  table
-  tbody
-  tr
-  td.last {
-  width: 99%;
-}
-#keyboardInputMaster
-  tbody
-  tr
-  td
-  div#keyboardInputLayout
-  table
-  tbody
-  tr
-  td.alive {
-  background-color: #ccccdd;
-}
-#keyboardInputMaster
-  tbody
-  tr
-  td
-  div#keyboardInputLayout
-  table
-  tbody
-  tr
-  td.target {
-  background-color: #ddddcc;
-}
-#keyboardInputMaster
-  tbody
-  tr
-  td
-  div#keyboardInputLayout
-  table
-  tbody
-  tr
-  td.hover {
-  border-top: 1px solid #d5d5d5;
-  border-right: 1px solid #555555;
-  border-bottom: 1px solid #555555;
-  border-left: 1px solid #d5d5d5;
-  background-color: #cccccc;
-}
-#keyboardInputMaster
-  tbody
-  tr
-  td
-  div#keyboardInputLayout
-  table
-  tbody
-  tr
-  td.pressed,
-#keyboardInputMaster
-  tbody
-  tr
-  td
-  div#keyboardInputLayout
-  table
-  tbody
-  tr
-  td.dead {
-  border-top: 1px solid #555555;
-  border-right: 1px solid #d5d5d5;
-  border-bottom: 1px solid #d5d5d5;
-  border-left: 1px solid #555555;
-  background-color: #cccccc;
-}
-#keyboardInputMaster tbody tr td div var {
-  position: absolute;
-  bottom: 0px;
-  right: 0px;
-  font: bold italic 11px Arial, sans-serif;
-  color: #444444;
-}
-.keyboardInputInitiator {
-  margin-left: 3px;
-  vertical-align: middle;
-  cursor: pointer;
 }
 </style>
